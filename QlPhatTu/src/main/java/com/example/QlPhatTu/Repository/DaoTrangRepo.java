@@ -1,8 +1,6 @@
 package com.example.QlPhatTu.Repository;
 
-import com.example.QlPhatTu.entity.DaoTrang;
-import com.example.QlPhatTu.entity.PhatTu;
-import com.example.QlPhatTu.entity.PhatTuDaoTrang;
+import com.example.QlPhatTu.model.Entity.DaoTrang;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

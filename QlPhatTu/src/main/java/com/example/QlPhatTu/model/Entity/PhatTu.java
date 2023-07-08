@@ -1,9 +1,6 @@
-package com.example.QlPhatTu.entity;
+package com.example.QlPhatTu.model.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,36 +14,33 @@ public class PhatTu {
     @Column(name = "id")
     private int Id;
 
-    @Max(0L)
     @Column(name = "ho")
     private String Ho;
 
-    @Max(0L)
+
     @Column(name = "tendem")
     private String TenDem;
 
-    @Max(0L)
+
     @Column(name = "ten")
     private String Ten;
-    @Max(0L)
+
     @Column(name = "phapdanh")
     private String PhapDanh;
 
-    @Max(0L)
+
     @Column(name = "anhchup")
     private String AnhChup;
 
-    @Max(0L)
+
     @Column(name = "sodienthoai")
     private String SoDienThoai;
 
-    @Max(0L)
+
     @Column(name = "email")
     private String email;
 
-    @Max(20)
-    @Min(8)
-    @NotNull
+
     @Column(name = "matkhau")
     private String MatKhau;
     @Column(name = "ngaysinh")
@@ -67,6 +61,7 @@ public class PhatTu {
     @Column(name = "ngaycapnhap")
     private LocalDate NgayCapNhap;
 
+
     @ManyToOne
     @JoinColumn(name = "kieuthanhvienid")
     private KieuThanhVien kieuThanhVien;
@@ -83,9 +78,9 @@ public class PhatTu {
     List<DonDangKy> donDangKyList;
 
 
-
     @OneToMany(mappedBy = "phatTu")
     List<DaoTrang> daoTrangList;
+
 
     public String getTen() {
         return Ten;
@@ -206,6 +201,7 @@ public class PhatTu {
     public void setKieuThanhVien(KieuThanhVien kieuThanhVien) {
         this.kieuThanhVien = kieuThanhVien;
     }
+
 
     public Chua getChua() {
         return chua;

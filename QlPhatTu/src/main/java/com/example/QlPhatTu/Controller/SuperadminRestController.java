@@ -1,9 +1,11 @@
 package com.example.QlPhatTu.Controller;
 
+
 import com.example.QlPhatTu.QlPhatTuService.*;
 import com.example.QlPhatTu.model.Entity.Chua;
 import com.example.QlPhatTu.model.Entity.DaoTrang;
 import com.example.QlPhatTu.model.Entity.PhatTu;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@CrossOrigin(value = "*",allowedHeaders = "*")
-@RequestMapping("api/version1.0")
-public class QuanLyPhatTu {
+@RequestMapping("/superadmin")
+@RequiredArgsConstructor
+public class SuperadminRestController {
+
 
     @Autowired
     private QlPhatTuService phatTuService;
@@ -119,7 +122,7 @@ public class QuanLyPhatTu {
 
     @GetMapping("inphattuthamgiadaotrang")
     public Page<PhatTu> inPhatTuThamGiaDaoTrang(@RequestParam(defaultValue = "0")int numberPage,
-                                                        @RequestParam(defaultValue = "5")int sizePage){
+                                                @RequestParam(defaultValue = "5")int sizePage){
         return phatTuDaoTrangService.inPhatTuDaoTrang(numberPage,sizePage);
     }
 
@@ -133,4 +136,6 @@ public class QuanLyPhatTu {
     public ResponseEntity<?> deletePhatTuDaoTrang(int phatTuDaoTrangId){
         return phatTuDaoTrangService.deletePhatTuDaoTrang(phatTuDaoTrangId);
     }
+
+
 }

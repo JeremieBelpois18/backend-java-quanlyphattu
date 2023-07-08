@@ -1,6 +1,7 @@
-package com.example.QlPhatTu.entity;
+package com.example.QlPhatTu.model.Entity;
+
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,7 +14,6 @@ public class DaoTrang {
     @Column(name = "id")
     private int Id;
 
-    @Max(0L)
     @Column(name = "noitochuc")
     private String NoiToChuc;
 
@@ -23,7 +23,7 @@ public class DaoTrang {
     @Column(name = "thoigiantochuc")
     private LocalDate ThoiGianToChuc;
 
-    @Max(0L)
+
     @Column(name = "noidung")
     private String NoiDung;
 

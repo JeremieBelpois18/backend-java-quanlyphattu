@@ -1,4 +1,4 @@
-package com.example.QlPhatTu.entity;
+package com.example.QlPhatTu.model.Entity;
 
 import jakarta.persistence.*;
 
@@ -22,8 +22,8 @@ public class DonDangKy {
     @Column(name = "ngayxuly")
     private LocalDate NgayXuLy;
 
-    @Column(name = "nguoisulyid")
-    private int NguoiSuLyId;
+    @Column(name = "nguoixuly")
+    private String NguoiXuLy;
 
     @ManyToOne
     @JoinColumn(name = "phattuid")
@@ -65,12 +65,12 @@ public class DonDangKy {
         NgayXuLy = ngayXuLy;
     }
 
-    public int getNguoiSuLyId() {
-        return NguoiSuLyId;
+    public String getNguoiXuLy() {
+        return NguoiXuLy;
     }
 
-    public void setNguoiSuLyId(int nguoiSuLyId) {
-        NguoiSuLyId = nguoiSuLyId;
+    public void setNguoiXuLy(String nguoiXuLy) {
+        NguoiXuLy = nguoiXuLy;
     }
 
     public PhatTu getPhatTuId() {

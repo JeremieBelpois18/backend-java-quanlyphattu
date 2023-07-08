@@ -1,14 +1,11 @@
 package com.example.QlPhatTu.Repository;
 
-import com.example.QlPhatTu.entity.DaoTrang;
-import com.example.QlPhatTu.entity.PhatTu;
+import com.example.QlPhatTu.model.Entity.PhatTu;
 
-import jakarta.persistence.Converter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -44,10 +41,13 @@ public interface PhatTuRepo extends JpaRepository<PhatTu,Integer> {
     @Query(value = "select trangthaidon from dondangky  where phattuid  = ?1",nativeQuery = true)
     int findTrangThaiDon(int phatTuId);
 
-    @Query(value = "select count(phattuid) from dondangky  where daotrangid = ?1 and trangthaidon = 1 ",nativeQuery = true)
+    @Query(value = "select count(phattuid) from phattudaotrang  where daotrangid = ?1 and dathamgia = 1 ",nativeQuery = true)
     int countnumberThamGia(int daoTrangId);
 
     @Query(value = "select distinct phattu.* from phattudaotrang,phattu where phattudaotrang.phattuid = phattu.id and phattudaotrang.dathamgia in (1)  ", nativeQuery = true)
     List<PhatTu> findPhatTuDaoTrang();
+
+    @Query(value = "select * from phattu where email like %?1% and matkhau like %?2%",nativeQuery = true)
+    List<PhatTu> findPhatTuEmailPass(String email,String pass);
 
 }

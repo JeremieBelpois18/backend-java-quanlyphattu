@@ -1,9 +1,9 @@
-package com.example.QlPhatTu.entity;
+package com.example.QlPhatTu.model.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 
 import java.util.List;
+
 
 @Entity
 @Table(name = "kieuthanhvien")
@@ -14,7 +14,6 @@ public class KieuThanhVien {
     @Column(name = "id")
     private int Id;
 
-    @Max(0L)
     @Column(name = "code")
     private String Code;
 

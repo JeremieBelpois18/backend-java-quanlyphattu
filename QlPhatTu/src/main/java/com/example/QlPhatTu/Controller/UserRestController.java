@@ -1,20 +1,28 @@
 package com.example.QlPhatTu.Controller;
 
+
 import com.example.QlPhatTu.QlPhatTuService.*;
+import com.example.QlPhatTu.businessLogic.IUserService;
+import com.example.QlPhatTu.dto.LoginDto;
+import com.example.QlPhatTu.dto.RegisterDto;
 import com.example.QlPhatTu.model.Entity.Chua;
 import com.example.QlPhatTu.model.Entity.DaoTrang;
 import com.example.QlPhatTu.model.Entity.PhatTu;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 
 @RestController
-@CrossOrigin(value = "*",allowedHeaders = "*")
-@RequestMapping("api/version1.0")
-public class QuanLyPhatTu {
+@RequestMapping("/user")
+@RequiredArgsConstructor
+public class UserRestController {
+
+
+
+    private final IUserService iUserService ;
 
     @Autowired
     private QlPhatTuService phatTuService;
@@ -34,6 +42,15 @@ public class QuanLyPhatTu {
     @Autowired
     private ChuaService chuaService;
 
+    @PostMapping("/register")
+    public ResponseEntity<?> register (@RequestBody RegisterDto registerDto)
+    { return  iUserService.register(registerDto);}
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> authenticate(@RequestBody LoginDto loginDto)
+    { return  iUserService.authenticate(loginDto);}
+
+
     @GetMapping("getallphattu")
     public Page<PhatTu> getPhatTu(@RequestParam(defaultValue = "0")int numberPage,
                                   @RequestParam(defaultValue = "5")int sizePage){
@@ -45,10 +62,6 @@ public class QuanLyPhatTu {
         return phatTuService.addPhatTu(phatTu);
     }
 
-    @DeleteMapping("xoaphattu")
-    public ResponseEntity<String> deletePhatTu(int phatTuId){
-        return phatTuService.DeletePhatTu(phatTuId);
-    }
 
     @GetMapping("timkiemphattu")
     public Page<PhatTu> timKiem(String ten, String phapDanh, String gioiTinh, String hoanTuc,@RequestParam(defaultValue = "0")int numberPage,
@@ -56,20 +69,12 @@ public class QuanLyPhatTu {
         return phatTuService.findPhatTu(ten,phapDanh,gioiTinh,hoanTuc,numberPage,sizePage);
     }
 
-    @PostMapping("suaphattu")
-    public ResponseEntity<String> suaphantu(@RequestBody PhatTu phatTu){
-        return phatTuService.editPhatTu(phatTu);
-    }
 
-    @PutMapping("dondangky")
+    @PostMapping("dondangky")
     public ResponseEntity<String> createDonDangKy(String ten,String phapDanh,String sdt,String email,int daoTrangId,int nguoiSuLy){
         return donDangKyService.createDonDangKy(ten, phapDanh, sdt, email,daoTrangId);
     }
-    /////
-    @PostMapping("quanlydon")
-    public ResponseEntity<?> quanLyDon(int id,int trangThai,String nguoiXuLy,String lyDoKhongThamGia){
-        return donDangKyService.QuanLyDon(id, trangThai,nguoiXuLy, lyDoKhongThamGia);
-    }
+
 
     @GetMapping("getallchua")
     public Page<Chua> getAllChua(@RequestParam(defaultValue = "0")int numberPage,
@@ -81,24 +86,8 @@ public class QuanLyPhatTu {
     public ResponseEntity<?> createChua(@RequestBody Chua chua){
         return chuaService.createChua(chua);
     }
-    @DeleteMapping("xoathongtinchua")
-    public ResponseEntity<?> xoaChua(int id){
-        return chuaService.deleteChua(id);
-    }
-    @PostMapping("suachua")
-    public ResponseEntity<?> editChua(int id, String tenChua, LocalDate ngayThanhLap, String diaChi){
-        return chuaService.editChua(id, tenChua, ngayThanhLap, diaChi);
-    }
 
-    @PostMapping("taodaotrang")
-    public ResponseEntity<?> createDaoTrang(String noiToChuc,LocalDate thoiGianToChuc,String noidung,int daKetThuc,int idTruTri,int idDaoTrang){
-        return daoTrangService.createDaoTrang(noiToChuc, thoiGianToChuc, noidung, daKetThuc,idTruTri,idDaoTrang);
-    }
 
-    @GetMapping("capnhapdaotrang")
-    public ResponseEntity<?> updateDaoTrang(int daoTrangId){
-        return daoTrangService.updateDaoTrang(daoTrangId);
-    }
 
     @PostMapping("suadaotrang")
     public ResponseEntity<?> suaDaoTrang(DaoTrang daoTrang){
@@ -112,14 +101,9 @@ public class QuanLyPhatTu {
         return daoTrangService.timDaoTrang(daoTrangId,noiToChuc,daKetThuc,thoiGian,numberPage,sizePage);
     }
 
-    @DeleteMapping("xoadaotrang")
-    public ResponseEntity<?> xoaDaoTrang(int id){
-        return daoTrangService.xoaDaoTrang(id);
-    }
-
     @GetMapping("inphattuthamgiadaotrang")
     public Page<PhatTu> inPhatTuThamGiaDaoTrang(@RequestParam(defaultValue = "0")int numberPage,
-                                                        @RequestParam(defaultValue = "5")int sizePage){
+                                                @RequestParam(defaultValue = "5")int sizePage){
         return phatTuDaoTrangService.inPhatTuDaoTrang(numberPage,sizePage);
     }
 
@@ -129,8 +113,5 @@ public class QuanLyPhatTu {
         return phatTuDaoTrangService.createPhatTuDaoTrang(phatTuId, daoTrangId, lyDoKhongThamGia);
     }
 
-    @DeleteMapping("xoaphattudaotrang")
-    public ResponseEntity<?> deletePhatTuDaoTrang(int phatTuDaoTrangId){
-        return phatTuDaoTrangService.deletePhatTuDaoTrang(phatTuDaoTrangId);
-    }
+
 }

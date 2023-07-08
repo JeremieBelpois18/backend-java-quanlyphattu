@@ -1,7 +1,6 @@
-package com.example.QlPhatTu.entity;
+package com.example.QlPhatTu.model.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,21 +14,20 @@ public class Chua {
     @Column(name = "id")
     private int Id;
 
-    @Max(0L)
     @Column(name = "tenchua")
     private String TenChua;
 
     @Column(name = "ngaythanhlap")
     private LocalDate NgayThanhLap;
 
-    @Max(0L)
     @Column(name = "diachi")
     private String DiaChi;
 
     @Column(name = "capnhap")
     private LocalDate CapNhap;
 
-
+    @Column(name = "trutriid")
+    private int TruTriId;
     @OneToMany(mappedBy = "chua")
     List<PhatTu> phatTuList;
 
@@ -40,6 +38,14 @@ public class Chua {
 
     public void setId(int id) {
         Id = id;
+    }
+
+    public int getTruTriId() {
+        return TruTriId;
+    }
+
+    public void setTruTriId(int truTriId) {
+        TruTriId = truTriId;
     }
 
     public String getTenChua() {

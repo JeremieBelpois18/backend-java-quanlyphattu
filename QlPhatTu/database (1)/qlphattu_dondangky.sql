@@ -30,6 +30,7 @@ CREATE TABLE `dondangky` (
   `trangthaidon` int DEFAULT NULL,
   `daotrangid` int DEFAULT NULL,
   `phattuid` int DEFAULT NULL,
+  `nguoixuly` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKk2heci5gxft9sup8m69oo8mqf` (`daotrangid`),
   KEY `FKqaau13kku4gaq4uhw1a4lc7nc` (`phattuid`),
@@ -44,7 +45,7 @@ CREATE TABLE `dondangky` (
 
 LOCK TABLES `dondangky` WRITE;
 /*!40000 ALTER TABLE `dondangky` DISABLE KEYS */;
-INSERT INTO `dondangky` VALUES (1,'2023-06-17','2023-06-17',7,1,1,3),(2,'2023-06-17',NULL,1,1,1,4);
+INSERT INTO `dondangky` VALUES (1,'2023-06-17','2023-06-17',7,1,1,3,NULL),(2,'2023-06-17',NULL,1,1,1,4,NULL);
 /*!40000 ALTER TABLE `dondangky` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-18  0:16:38
+-- Dump completed on 2023-07-08 15:38:56

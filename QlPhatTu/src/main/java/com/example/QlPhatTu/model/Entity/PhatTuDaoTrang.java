@@ -1,4 +1,4 @@
-package com.example.QlPhatTu.entity;
+package com.example.QlPhatTu.model.Entity;
 
 import jakarta.persistence.*;
 

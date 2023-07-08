@@ -16,34 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `phattudaotrang`
+-- Table structure for table `user_roles`
 --
 
-DROP TABLE IF EXISTS `phattudaotrang`;
+DROP TABLE IF EXISTS `user_roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `phattudaotrang` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `dathamgia` int DEFAULT NULL,
-  `lydokhongthamgia` varchar(255) DEFAULT NULL,
-  `daotrangid` int DEFAULT NULL,
-  `phattuid` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK5pyxf89jmd2oq00dnm3vr1tt6` (`daotrangid`),
-  KEY `FK4qlm2ra3jc9hih1qnj33tcybl` (`phattuid`),
-  CONSTRAINT `FK4qlm2ra3jc9hih1qnj33tcybl` FOREIGN KEY (`phattuid`) REFERENCES `phattu` (`id`),
-  CONSTRAINT `FK5pyxf89jmd2oq00dnm3vr1tt6` FOREIGN KEY (`daotrangid`) REFERENCES `daotrang` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `user_roles` (
+  `user_id` int NOT NULL,
+  `roles_id` int NOT NULL,
+  KEY `FKj9553ass9uctjrmh0gkqsmv0d` (`roles_id`),
+  KEY `FK55itppkw3i07do3h7qoclqd4k` (`user_id`),
+  CONSTRAINT `FK55itppkw3i07do3h7qoclqd4k` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `FKj9553ass9uctjrmh0gkqsmv0d` FOREIGN KEY (`roles_id`) REFERENCES `role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `phattudaotrang`
+-- Dumping data for table `user_roles`
 --
 
-LOCK TABLES `phattudaotrang` WRITE;
-/*!40000 ALTER TABLE `phattudaotrang` DISABLE KEYS */;
-INSERT INTO `phattudaotrang` VALUES (1,1,'0',1,3),(2,1,'0',1,4),(3,1,'0',1,4),(4,1,'0',1,4);
-/*!40000 ALTER TABLE `phattudaotrang` ENABLE KEYS */;
+LOCK TABLES `user_roles` WRITE;
+/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
+INSERT INTO `user_roles` VALUES (1,2),(2,3),(3,1),(4,1);
+/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-18  0:16:38
+-- Dump completed on 2023-07-08 15:38:57
